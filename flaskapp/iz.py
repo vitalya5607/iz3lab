@@ -32,6 +32,8 @@ class NetForm(FlaskForm):
  # и указывает пользователю ввести данные если они не введены
  # или неверны
  cho = StringField('Повернуть на', validators = [DataRequired()])
+ gor = StringField('горизонталь', validators = [DataRequired()])
+ ver = StringField('вертикаль', validators = [DataRequired()])
  # поле загрузки файла
  # здесь валидатор укажет ввести правильные файлы
  upload = FileField('Load image', validators=[
@@ -54,7 +56,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 ## функция для оброботки изображения
-def draw(filename,cho):
+def draw(filename,cho,gor,ver):
  ##открываем изображение
  print(filename)
  img= Image.open(filename)
@@ -76,9 +78,12 @@ def draw(filename,cho):
  output_filename = filename
  img.save(output_filename)
 
+##изменение размера по осям
+ size=(gor,ver)
+ img = img.resize(size)
+ img.save(output_filename)
 
-
- return output_filename,gr_path
+ return output_filename,gr_path,gr_path
 
 # метод обработки запроса GET и POST от клиента
 @app.route("/net",methods=['GET', 'POST'])
@@ -89,15 +94,19 @@ def net():
  filename=None
  newfilename=None
  grname=None
- 
+ grname2=None
  # проверяем нажатие сабмит и валидацию введенных данных
  if form.validate_on_submit():
   # файлы с изображениями читаются из каталога static
   filename = os.path.join('./static', secure_filename(form.upload.data.filename))
   ch=form.cho.data
-  
+  ch=int(ch)
+  osii=form.gor.data
+  osii=int(osii)
+  ra=form.ver.data
+  ra=int(ra)
   form.upload.data.save(filename)
-  newfilename,grname = draw(filename,ch)
+  newfilename,grname,grname2 = draw(filename,ch,osii,ra)
 
  return render_template('net.html',form=form,image_name=newfilename,gr_name=grname,gr_name2=grname2)
 
