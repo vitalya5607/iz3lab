@@ -32,8 +32,6 @@ class NetForm(FlaskForm):
  # и указывает пользователю ввести данные если они не введены
  # или неверны
  cho = StringField('Повернуть на', validators = [DataRequired()])
- gor = StringField('горизонталь', validators = [DataRequired()])
- ver = StringField('вертикаль', validators = [DataRequired()])
  # поле загрузки файла
  # здесь валидатор укажет ввести правильные файлы
  upload = FileField('Load image', validators=[
@@ -78,12 +76,7 @@ def draw(filename,cho,gor,ver):
  output_filename = filename
  img.save(output_filename)
 
-##изменение размера по осям
- size=(gor,ver)
- img = img.resize(size)
- img.save(output_filename)
-
- return output_filename,gr_path,gr_path
+ return output_filename,gr_path
 
 # метод обработки запроса GET и POST от клиента
 @app.route("/net",methods=['GET', 'POST'])
