@@ -32,7 +32,7 @@ class NetForm(FlaskForm):
  # валидатор проверяет введение данных после нажатия кнопки submit
  # и указывает пользователю ввести данные если они не введены
  # или неверны
- cho = StringField('ver-изменить по вертикали,gor-по горизонтали', validators = [DataRequired()])
+ cho = StringField('1-поменять правую и левую часть,2-поменять верхнюю и нижнюю часть', validators = [DataRequired()])
  # поле загрузки файла
  # здесь валидатор укажет ввести правильные файлы
  upload = FileField('Load image', validators=[
@@ -75,7 +75,7 @@ def draw(filename,cho):
  plt.close()
 
 ##меняем половинки
- if cho==ver: 
+ if cho==1: 
   a = img.crop((0, 0, int(y * 0.5), x))
   b = img.crop((int(y * 0.5), 0, x, y))
   img.paste(b, (0, 0))
