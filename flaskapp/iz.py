@@ -76,7 +76,7 @@ def draw(filename,cho,gor,ver):
  output_filename = filename
  img.save(output_filename)
 
- return output_filename,gr_path,gr_path
+ return output_filename
 
 # метод обработки запроса GET и POST от клиента
 @app.route("/net",methods=['GET', 'POST'])
