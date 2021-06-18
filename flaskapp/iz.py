@@ -95,13 +95,9 @@ def net():
   # файлы с изображениями читаются из каталога static
   filename = os.path.join('./static', secure_filename(form.upload.data.filename))
   ch=form.cho.data
-  ch=int(ch)
-  osii=form.gor.data
-  osii=int(osii)
-  ra=form.ver.data
-  ra=int(ra)
+  
   form.upload.data.save(filename)
-  newfilename,grname = draw(filename,ch,osii,ra)
+  newfilename,grname = draw(filename,ch)
 
  return render_template('net.html',form=form,image_name=newfilename,gr_name=grname,gr_name2=grname2)
 
