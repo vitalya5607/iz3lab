@@ -74,7 +74,7 @@ def draw(filename,cho):
  plt.savefig(gr_path)
  plt.close()
 
-##меняем половинки
+##меняем половинки картинок по выбору
  if cho==1: 
   a = img.crop((0, 0, int(y * 0.5), x))
   b = img.crop((int(y * 0.5), 0, x, y))
