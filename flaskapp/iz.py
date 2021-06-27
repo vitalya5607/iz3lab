@@ -33,9 +33,9 @@ class NetForm(FlaskForm):
  # и указывает пользователю ввести данные если они не введены
  # или неверны
  cho = StringField('1-поменять правую и левую часть,2-поменять верхнюю и нижнюю часть', validators = [DataRequired()])
- rcolor = StringField('выберите интенсивность красного (0.0 - 1)', validators = [DataRequired()])
- gcolor = StringField('выберите интенсивность зеленого (0.0 - 1)', validators = [DataRequired()])
- bcolor = StringField('выберите интенсивность синего (0.0 - 1)', validators = [DataRequired()])
+ rcolor = StringField('red (0.0 - 1)', validators = [DataRequired()])
+ gcolor = StringField('green (0.0 - 1)', validators = [DataRequired()])
+ bcolor = StringField('blue (0.0 - 1)', validators = [DataRequired()])
  # поле загрузки файла
  # здесь валидатор укажет ввести правильные файлы
  upload = FileField('Load image', validators=[
